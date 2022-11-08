@@ -1,0 +1,102 @@
+#This is the window for the profile creation page
+<ProfileWindows>:
+    name:"Profile"
+    GridLayout:
+        cols: 1
+        spacing: '20dp'
+        #This label is displayed as a title on the window
+        Label:
+            text: "User Profile Page"
+            font_size: 80
+            color: 1,50,0,1
+        Label:
+            id: info
+            text: ''
+            markup: True
+            size_hint_y: None
+            height: 20
+            font_size: 20
+        GridLayout:
+            cols: 2
+            spacing: '10dp'
+            #This creates a textbox that asks for the username
+            TextInput:
+                id: username
+                hint_text: "User Name:"
+                multiline: False
+                font_size: 30
+                focus: True
+                on_text_validate: password_id.focus = True
+            #This creates a textbox that asks for the password
+            TextInput:
+                id: password_id
+                hint_text: "Password:"
+                multiline: False
+                font_size: 30
+                password: True
+                focus: True
+                on_text_validate: name_id.focus = True
+            #This creats a textbox that asks for the name
+            TextInput:
+                id: name_id
+                hint_text: "Name:"
+                multiline: False
+                font_size: 30
+                focus: True
+                on_text_validate: height_id.focus = True
+            #This creates a textbox that asks for height in cm
+            TextInput:
+                id: height_id
+                hint_text: "Height in cm:"
+                multiline: False
+                font_size: 30
+                focus: True
+                on_text_validate: initial_weight_id.focus = True
+            #This creates a textbox that asks for weight
+            TextInput:
+                id: initial_weight_id
+                hint_text: "Weight:"
+                multiline: False
+                font_size: 30
+                focus: True
+                on_text_validate: age_id.focus = True
+            #This creates a textbox that asks for age
+            TextInput:
+                id: age_id
+                hint_text: "Age:"
+                multiline: False
+                font_size: 30
+                focus: True
+                on_text_validate:
+                    app.valid_entry(username, password_id, name_id, height_id, initial_weight_id, age_id, info)
+        GridLayout:
+            cols:2
+            spacing: '10dp'
+            #This creates a button that submits all information to the sql database so the new profile is created upon press
+            Button:
+                text: "SUBMIT"
+                font_size: 40
+                on_press:
+                    app.add_user(username, password_id, name_id, height_id, initial_weight_id, age_id, info)
+                on_release:
+                    username.text = ""
+                    password_id.text = ""
+                    name_id.text = ""
+                    height_id.text = ""
+                    initial_weight_id.text = ""
+                    age_id.text = ""
+
+            #This creates a button that takes the user back to the login screen and empties all textboxes upon press
+            Button:
+                text: "EXIT"
+                font_size: 40
+                on_release:
+                    app.root.current = "Login"
+                    root.manager.transition.direction = "down"
+                    username.text = ""
+                    password_id.text = ""
+                    name_id.text = ""
+                    height_id.text = ""
+                    initial_weight_id.text = ""
+                    age_id.text = ""
+                    info.text = ""

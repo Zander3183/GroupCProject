@@ -1,0 +1,93 @@
+#This is the window for the summary page
+<SummaryWindows>:
+    name: "Summary"
+    GridLayout:
+        cols:1
+        height: .9
+        GridLayout:
+            cols:1
+            #The following 2 labels are used as titles for the current window
+            Label:
+                id: summary_title_id
+                text:'Team C Group Project'
+                font_size: 50
+                color: 1,50,0,1
+            Label:
+                id: Calorie_sub_title_id
+                text:'Summary Page'
+                font_size: 50
+                color: 0,1,0,1
+            GridLayout:
+                cols:1
+                Widget:
+                    size_hint: None, None
+                    height: .5
+            GridLayout:
+                cols:5
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates a textbox that asks for the username
+                TextInput:
+                    id: username
+                    font_size: 30
+                    hint_text: "Username"
+                    multiline: False
+                    focus: True
+                    on_text_validate: category_input.focus = True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates a textbox that asks for which category to display the summary for
+                TextInput:
+                    id: category_input
+                    font_size: 30
+                    hint_text: "category"
+                    multiline: False
+                    focus: True
+                    on_text_validate: True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that displays the respective graph when pressed
+            Button:
+                id: Graph
+                text: 'Graph'
+                font_size: 30
+                on_press:
+                    summary_display.text = "You will hit your goals!!!"
+                on_release:
+                    app.get_data(username, category_input)
+                    username.text = ""
+                    category_input.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that takes the user back to the Dashboard when pressed
+            Button:
+                id: summary_exit
+                text:"Dashboard"
+                font_size: 30
+                on_release:
+                    app.root.current = "Dashboard"
+                    root.manager.transition.direction = "right"
+                    summary_display.text = "Drop that Pizza and track!!"
+            Widget:
+                size_hint: None, None
+                height: 10
+        GridLayout:
+            cols:1
+            #This displays encouraging text
+            Label:
+                id: summary_display
+                text:'Amazing Results!!'
+                font_size: 50
+                color: 1,50,0,1

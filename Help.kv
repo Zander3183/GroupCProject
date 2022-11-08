@@ -1,0 +1,34 @@
+#This is the window for the help section
+<HelpWindows>:
+    name: "Help"
+    GridLayout:
+        cols: 1
+        Widget:
+            size_hint: None, None
+            height: 50
+        #The following 4 labels create text to be displayed on the window
+        Label:
+            text: "HELP"
+            font_size: 100
+            color: 43, 235, 140,1
+        Label:
+            text: "If you need help with fitness,"
+            font_size: 25
+            color: 43, 235, 140,1
+        Label:
+            text: "Here are some useful website links to help you along."
+            font_size: 25
+            color: 43, 235, 140,1
+        Label:
+            text: "www.google.com"
+            font_size: 50
+            color: 43, 235, 140,1
+        GridLayout:
+            cols: 1
+        #This creates a button that takes the user back to the dashboard upon press
+        Button:
+            text:'Dashboard'
+            font_size: 35
+            on_release:
+                app.root.current = "Dashboard"
+                root.manager.transition.direction = "right"

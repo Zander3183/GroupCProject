@@ -1,0 +1,90 @@
+#This is the window for the Dashboard
+<DashboardWindows>:
+    id: Dashboard_id
+    name: "Dashboard" 
+    GridLayout:  
+        cols:1
+        #The following 2 labels are displayed as titles on this window
+        Label:
+            text:'Team C Group Project'
+            font_size: 50
+            color: 1,50,0,1
+        Label:
+            text:'**Dashboard**'
+            color: 0,1,0,1
+            font_size: 45
+        GridLayout: 
+            cols:2
+            spacing: '20dp'
+            #This creates the button that leads to the Weight Tracker portion of the program when pressed
+            Button:
+                text:'Weight Tracker'
+                font_size: 25
+                size_hint: .50, 1
+                on_release:
+                    app.root.current = "Weight Tracker"
+                    root.manager.transition.direction = "left"
+            #This creates the button that leads to the Calorie Tracker portion of the program when pressed
+            Button:
+                text:'Calorie Tracker'
+                font_size: 25
+                size_hint: .50, 1
+                on_release:
+                    app.root.current = "Calorie Intake Tracker"
+                    root.manager.transition.direction = "left"
+        GridLayout:
+            cols:2
+            spacing: '20dp'
+            #This creates the button that leads to the Happiness Tracker portion of the program when pressed
+            Button:
+                text:'Happy Tracker'
+                font_size: 25
+                size_hint: .50, 1
+                on_release:
+                    app.root.current = "Happy Tracker"
+                    root.manager.transition.direction = "left"
+            #This creates the button that leads to the Water Intake Tracker portion of the program when presssed
+            Button:
+                text:'Water Intake Tracker'
+                font_size: 25
+                size_hint: .5, 1
+                pos_hint: {'right': 1}
+                on_release:
+                    app.root.current = "Water Intake Tracker"
+                    root.manager.transition.direction = "left"
+        GridLayout:
+            cols:2
+            spacing: '20dp'
+            #This creates the button that takes the user to the Profile Screen when pressed
+            Button:
+                text:'Profile Screen'
+                font_size: 25
+                size_hint: .50, 1
+                on_release:
+                    app.root.current = "Profile"
+                    root.manager.transition.direction = "left"
+            #This creates the button that takes the user to the help section of the programm when pressed
+            Button:
+                text:'HELP!'
+                font_size: 25
+                size_hint: .50, 1
+                on_release:
+                    app.root.current = "Help"
+                    root.manager.transition.direction = "left"
+        GridLayout:
+            cols:2
+            spacing: '20dp'
+            #This creates the button that takes the user to the summary reports section of the program when pressed
+            Button:
+                text:'Summary'
+                font_size: 35
+                on_release:
+                    app.root.current = "Summary"
+                    root.manager.transition.direction = "left"
+            #This creates the button that logs the user out and takes them back to the login screen when pressed
+            Button:
+                text:'Logout'
+                font_size: 35
+                on_release:
+                    app.root.current = "Login"
+                    root.manager.transition.direction = "down"

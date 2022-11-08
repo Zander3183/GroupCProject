@@ -1,0 +1,92 @@
+#This is the window for the Happy tracker
+<HappyWindows>:
+    name: "Happy Tracker"
+    GridLayout:
+        cols:1
+        height: .9
+        GridLayout:
+            cols:1
+            #The following two labels are used as titles for the window
+            Label:
+                id: happy_title_id
+                text:'Team C Group Project'
+                font_size: 50
+                color: 1,50,0,1
+            Label:
+                id: Happy_sub_title_id
+                text:'Happy Tracker Page'
+                font_size: 50
+                color: 0,1,0,1
+            GridLayout:
+                cols:1
+                Widget:
+                    size_hint: None, None
+                    height: .5
+            GridLayout:
+                cols:5
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the textbox asks for the username
+                TextInput:
+                    id: username
+                    font_size: 30
+                    hint_text: "Username"
+                    multiline: False
+                    focus: True
+                    on_text_validate: happy.focus = True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the textbox that asks for the user's happy rating
+                TextInput:
+                    id: happy
+                    font_size: 30
+                    hint_text: "Happy rating 1-10"
+                    multiline: False
+                    focus: True
+                    on_text_validate: True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that submits the user's happy rating and displays encouraging text upon press
+            Button:
+                id: Submit
+                text: 'Submit'
+                font_size: 30
+                on_release:
+                    happy_display.text = "Look at you smile!!!"
+                    app.send_data_category_happy(username, happy, info)
+                    happy.text = ""
+                    username.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that takes the user back to the dashboard and displays text upon press
+            Button:
+                id: happy_exit
+                text:"Dashboard"
+                font_size: 30
+                on_release:
+                    app.root.current = "Dashboard"
+                    root.manager.transition.direction = "right"
+                    happy_display.text = "How happy Are you Today?"
+            Widget:
+                size_hint: None, None
+                height: 10
+        GridLayout:
+            cols:1
+            #This displays encouraging text upon press
+            Label:
+                id: happy_display
+                text:'You Got This!!'
+                font_size: 50
+                color: 1,50,0,1

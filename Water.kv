@@ -1,0 +1,92 @@
+#This is the water intake tracker window
+<WaterTrackerWindows>:
+    name: "Water Intake Tracker"
+    GridLayout:
+        cols:1
+        height: .9
+        GridLayout:
+            cols:1
+            #The following 2 labels are displayed as titles for the current window
+            Label:
+                id: water_title_id
+                text:'Team C Group Project'
+                font_size: 50
+                color: 1,50,0,1
+            Label:
+                id: Water_sub_title_id
+                text:'Water Tracker Page'
+                font_size: 50
+                color: 0,1,0,1
+            GridLayout:
+                cols:1
+                Widget:
+                    size_hint: None, None
+                    height: .5
+            GridLayout:
+                cols:5
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates a textbox that asks for the username
+                TextInput:
+                    id: username
+                    font_size: 30
+                    hint_text: "Username"
+                    multiline: False
+                    focus: True
+                    on_text_validate: water.focus = True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates a textbox that asks for water intake in liters
+                TextInput:
+                    id: water
+                    font_size: 30
+                    hint_text: "water in liters.."
+                    multiline: False
+                    focus: True
+                    on_text_validate: True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that submits water intake amount and clears the textboxes
+            Button:
+                id: Submit
+                text: 'Submit'
+                font_size: 30
+                on_release:
+                    water_display.text = "No more thirsty for you!!!"
+                    app.send_data_category_water(username, water)
+                    water.text = ""
+                    username.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that takes the user back to the dashboard upon press
+            Button:
+                id: water_exit
+                text:"Dashboard"
+                font_size: 30
+                on_release:
+                    app.root.current = "Dashboard"
+                    root.manager.transition.direction = "right"
+                    water_display.text = "Got Water??"
+            Widget:
+                size_hint: None, None
+                height: 10
+        GridLayout:
+            cols:1
+            #This displays encouraging words
+            Label:
+                id: water_display
+                text:'You Got This!!'
+                font_size: 50
+                color: 1,50,0,1

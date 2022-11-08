@@ -1,0 +1,93 @@
+#This is the window for the calorie intake tracker
+<CalorieTrackerWindows>:
+    name: "Calorie Intake Tracker"
+    GridLayout:
+        cols:1
+        height: .9 
+        GridLayout:
+            #The following 2 labels are used as titles for the window
+            cols:1
+            Label:
+                id: calorie_title_id
+                text:'Team C Group Project'
+                font_size: 50
+                color: 1,50,0,1
+                #blah blah blah
+            Label:
+                id: Calorie_sub_title_id
+                text:'Calorie Tracker Page'
+                font_size: 50
+                color: 0,1,0,1
+            GridLayout:
+                cols:1
+                Widget:
+                    size_hint: None, None  
+                    height: .5
+            GridLayout:
+                cols:5
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the textbox that asks for the username
+                TextInput:
+                    id: username
+                    font_size: 30
+                    hint_text: "Username"
+                    multiline: False
+                    focus: True
+                    on_text_validate: calorie.focus = True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the textbox that asks for calorie intake in whole numbers    
+                TextInput:
+                    id: calorie
+                    font_size: 20
+                    hint_text: "calorie in whole numbers.."
+                    multiline: False
+                    focus: True
+                    on_text_validate: True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates the submit button, and displays encouraging text upon button press
+            Button:
+                id: Submit
+                text: 'Submit'
+                font_size: 30
+                on_release:
+                    calorie_display.text = "You will hit your goals!!!"
+                    app.send_data_category_calorie(username, calorie)
+                    calorie.text = ""
+                    username.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates the exit to Dashboard button, which takes the user back to the Dashboard upon button press
+            Button:
+                id: calorie_exit
+                text:"Dashboard"
+                font_size: 30
+                on_release:
+                    app.root.current = "Dashboard"
+                    root.manager.transition.direction = "right"
+                    calorie_display.text = "Drop that Pizza and track!!"
+            Widget:
+                size_hint: None, None
+                height: 10
+        GridLayout:
+            cols:1
+            #This displays encouraging text at the bottom of the screen
+            Label:
+                id: calorie_display
+                text:'You Got This!!'
+                font_size: 50
+                color: 1,50,0,1

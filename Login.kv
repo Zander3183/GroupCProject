@@ -1,0 +1,123 @@
+#This is the window for the login screen
+<LoginWindows>:
+    name: "Login" # name that is called for each window when we are moving back and forth
+    GridLayout:
+        cols:1
+        GridLayout:
+            cols:1
+            #The following 2 labels are used as titles for the current window
+            Label:
+                id: title_id
+                text:'Team C Group Project'
+                font_size: 50
+                color: 1,50,0,1
+            Label:
+                id: fitness_id
+                text:'Fitness Tracker'
+                font_size: 50
+                color: 0,1,0,1
+            Label:
+                id: info
+                text: ''
+                markup: True
+                size_hint_y: None 
+                height: 20
+            GridLayout:
+                cols:5
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the text box that asks for the username
+                TextInput:
+                    id: username
+                    font_size: 30
+                    hint_text: "Username"
+                    multiline: False
+                    focus: True
+                    on_text_validate: password_id.focus = True
+                Widget:
+                    size_hint: None, None
+                    height: 4
+                #This creates the text box that asks for the password
+                TextInput:
+                    id: password_id
+                    hint_text: "Password"
+                    multiline: False
+                    font_size: 30
+                    password: True
+                    on_text_validate:
+                        app.validate_users(username, password_id, info)
+                Widget:
+                    size_hint: None, None
+                    height: 4
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that logs the user in if username and password are validated
+            Button:
+                id: login
+                text: 'Login'
+                font_size: 30
+                on_press:
+                    app.validate_users(username, password_id, info)
+                on_release:
+                    app.root.current = "Dashboard"
+                    root.manager.transition.direction = "up"
+                    username.text = ""
+                    password_id.text = ""
+                    info.text = ""
+
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that takes the user to the setup profile page
+            Button:
+                text: "Setup Profile"
+                font_size: 30
+                on_release:
+                    app.root.current = "Profile"
+                    root.manager.transition.direction = "up"
+                    username.text = ""
+                    password_id.text = ""
+                    info.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+        Widget:
+            size_hint: None, None
+            height: 10
+        GridLayout:
+            cols:5
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that quits the app
+            Button:
+                id:Exit
+                text:"QUIT"
+                font_size: 30
+                on_press: app.stop()
+            Widget:
+                size_hint: None, None
+                height: 10
+            #This creates a button that changes a user's password if the information is validated successfully
+            Button:
+                text: "Change Password"
+                font_size: 25
+                on_press:
+                    app.change_data(username, password_id, info)
+                on_release:
+                    username.text = ""
+                    password_id.text = ""
+                    info.text = ""
+            Widget:
+                size_hint: None, None
+                height: 10
+        Widget:
+            size_hint: None, None
+            height: 10
