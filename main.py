@@ -20,6 +20,7 @@ class MainApp(App):
     Builder.load_file('Home.kv')
     Builder.load_file('Login.kv') 
     Builder.load_file('Profile.kv')
+    Builder.load_file('ProfileDisplay.kv')
     Builder.load_file('Help.kv')
     Builder.load_file('Dashboard.kv')
     Builder.load_file('Weight.kv')
@@ -27,7 +28,6 @@ class MainApp(App):
     Builder.load_file('Calorie.kv')
     Builder.load_file('Water.kv')
     Builder.load_file('Summary.kv')
-    Builder.load_file('Graph.kv')
 
     #The database is initialized
     database = mysql.connector.Connect(host="localhost", user="root", password="root", database="loginform")
@@ -181,6 +181,9 @@ class LoginWindows(Screen):
     pass
 
 class ProfileWindows(Screen):
+    pass
+
+class ProfileDisplayWindows(Screen):
     pass
 
 class DashboardWindows(Screen):
