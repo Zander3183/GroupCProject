@@ -20,7 +20,7 @@ class MainApp(App):
     Builder.load_file('Home.kv')
     Builder.load_file('Login.kv') 
     Builder.load_file('Profile.kv')
-    Builder.load_file('ProfileDisplay.kv')
+    Builder.load_file('Display.kv')
     Builder.load_file('Help.kv')
     Builder.load_file('Dashboard.kv')
     Builder.load_file('Weight.kv')
@@ -39,7 +39,18 @@ class MainApp(App):
     def send_data(self, username, password_id): 
         self.cursor.execute(f"insert into logindata values('{username.text}', '{password_id.text}')")
         self.database.commit()
+
+    # def get_user_data(self, username):
+    #     password_queue = []
+    #     sql_query = f"SELECT USERNAME FROM LOGINDATA WHERE USERNAME = '{username.text}' AND password_id = '{password_id.text}'"
         
+    #     self.cursor.execute(sql_query)
+    #     results = self.cursor.fetchall()
+    #     for row in results:
+    #         for x in row:
+    #             password_queue.append(x)
+
+      
     #This sends data from python to mysql, so the summary graph can be created
     def get_data(self, username, category_input): 
         self.cursor.execute(f"SELECT {category_input.text} FROM {username.text}")
@@ -183,7 +194,7 @@ class LoginWindows(Screen):
 class ProfileWindows(Screen):
     pass
 
-class ProfileDisplayWindows(Screen):
+class DisplayWindows(Screen):
     pass
 
 class DashboardWindows(Screen):
