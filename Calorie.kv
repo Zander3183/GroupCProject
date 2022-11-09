@@ -29,13 +29,9 @@
                     size_hint: None, None
                     height: 4
                 #This creates the textbox that asks for the username
-                TextInput:
+                Label:
                     id: username
                     font_size: 30
-                    hint_text: "Username"
-                    multiline: False
-                    focus: True
-                    on_text_validate: calorie.focus = True
                 Widget:
                     size_hint: None, None
                     height: 4
@@ -63,6 +59,8 @@
                 id: Submit
                 text: 'Submit'
                 font_size: 30
+                on_press:
+                    username.text = app.get_user_name()
                 on_release:
                     calorie_display.text = "You will hit your goals!!!"
                     app.send_data_category_calorie(username, calorie)

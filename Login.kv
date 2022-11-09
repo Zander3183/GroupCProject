@@ -1,5 +1,6 @@
 #This is the window for the login screen
 <LoginWindows>:
+    id: login_window_id
     name: "Login" # name that is called for each window when we are moving back and forth
     GridLayout:
         cols:1
@@ -66,9 +67,9 @@
                 on_press:
                     app.validate_users(username, password_id, info)
                 on_release:
-                    app.root.current = "Dashboard"
+                    app.root.current = info.text
+                    app.username_global(username)
                     root.manager.transition.direction = "up"
-                    username.text = ""
                     password_id.text = ""
                     info.text = ""
 

@@ -28,13 +28,9 @@
                     size_hint: None, None
                     height: 4
                 #This creates the textbox asks for the username
-                TextInput:
+                Label:
                     id: username
                     font_size: 30
-                    hint_text: "Username"
-                    multiline: False
-                    focus: True
-                    on_text_validate: happy.focus = True
                 Widget:
                     size_hint: None, None
                     height: 4
@@ -62,11 +58,12 @@
                 id: Submit
                 text: 'Submit'
                 font_size: 30
+                on_press:
+                    username.text = app.get_user_name()
                 on_release:
                     happy_display.text = "Look at you smile!!!"
-                    app.send_data_category_happy(username, happy, info)
+                    app.send_data_category_happy(username, happy, happy_display)
                     happy.text = ""
-                    username.text = ""
             Widget:
                 size_hint: None, None
                 height: 10

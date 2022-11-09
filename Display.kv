@@ -10,65 +10,50 @@
             font_size: 80
             color: 1,50,0,1
         Label:
-            id: info
-            text: ''
+            id: infos
+            text: "Blank Info"
             markup: True
             size_hint_y: None
             height: 20
             font_size: 20
+        Button:
+            text: "Display Profile"
+            font_size: 30
+            on_press:
+                username1.text = app.get_user_name()
         GridLayout:
             cols: 2
             spacing: '10dp'
-            #This creates a textbox that asks for the username
-            # Label:
-            #     id: username
-            #     text: app.get_user_data()
-            #     multiline: False
-            #     font_size: 30
-            #     focus: True
-            #     on_text_validate: password_id.focus = True
-            #This creates a textbox that asks for the password
-            TextInput:
-                id: password_id
-                hint_text: "Password:"
-                multiline: False
+            # This creates a textbox that asks for the username
+            Label:
+                id: username1
+                text: "User Name"
                 font_size: 30
-                password: True
-                focus: True
-                on_text_validate: name_id.focus = True
+            # This creates a textbox that asks for the password
+            Label:
+                id: password_label
+                text: "Label"
+                font_size: 30
             #This creats a textbox that asks for the name
-            TextInput:
-                id: name_id
-                hint_text: "Name:"
-                multiline: False
+            Label:
+                id: name_label
+                text: "Name:"
                 font_size: 30
-                focus: True
-                on_text_validate: height_id.focus = True
             #This creates a textbox that asks for height in cm
-            TextInput:
-                id: height_id
-                hint_text: "Height in cm:"
-                multiline: False
+            Label:
+                id: height_label
+                text: "Height in cm:"
                 font_size: 30
-                focus: True
-                on_text_validate: initial_weight_id.focus = True
             #This creates a textbox that asks for weight
-            TextInput:
-                id: initial_weight_id
+            Label:
+                id: initial_weight_label
                 hint_text: "Weight:"
-                multiline: False
                 font_size: 30
-                focus: True
-                on_text_validate: age_id.focus = True
             #This creates a textbox that asks for age
-            TextInput:
-                id: age_id
+            Label:
+                id: age_label
                 hint_text: "Age:"
-                multiline: False
                 font_size: 30
-                focus: True
-                on_text_validate:
-                    app.valid_entry(username, password_id, name_id, height_id, initial_weight_id, age_id, info)
         GridLayout:
             cols:5
             Widget:

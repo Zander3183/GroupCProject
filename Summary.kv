@@ -20,7 +20,7 @@
                     size_hint: None, None
                     height: .5
             GridLayout:
-                cols:7
+                cols:8
                 Widget:
                     size_hint: None, None
                     height: 4
@@ -31,7 +31,7 @@
                 #This creates a textbox that asks for the username
                 Label:
                     id: username
-                    text: "Alex123"
+                    text: ""
                     font_size: 20
                 Widget:
                     size_hint: None, None
@@ -46,6 +46,9 @@
                     font_size: 20
                     hint_text: "category"
                     multiline: False
+                Label:
+                    id: category_input2
+                    font_size: 20
                 Widget:
                     size_hint: None, None
                     height: 4
@@ -64,6 +67,7 @@
                 text: 'Water Graph'
                 font_size: 30
                 on_press:
+                    username.text = app.get_user_name()
                     summary_display.text = "You will hit your water goals!!!"
                     category_input.text = "water"
                 on_release:
@@ -78,6 +82,7 @@
                 text: 'Calorie Graph'
                 font_size: 30
                 on_press:
+                    username.text = app.get_user_name()
                     summary_display.text = "You will hit your calorie goals!!!"
                     category_input.text = "calories"
                 on_release:
@@ -96,6 +101,7 @@
                 text: 'Weight Graph'
                 font_size: 30
                 on_press:
+                    username.text = app.get_user_name()
                     summary_display.text = "You will hit your weight goals!!!"
                     category_input.text = "weight"
                 on_release:
@@ -110,6 +116,7 @@
                 text: 'Happiness Graph'
                 font_size: 30
                 on_press:
+                    username.text = app.get_user_name()
                     summary_display.text = "You will hit your happiness goals!!!"
                     category_input.text = "happy"
                 on_release:
@@ -128,10 +135,12 @@
                 text: 'Calorie/Happy'
                 font_size: 30
                 on_press:
-                    summary_display.text = "Calories = Happy!!!"
-                    category_input.text = " calories"
+                    username.text = app.get_user_name()
+                    summary_display.text = "Calorie and Happy Correlate!!!"
+                    category_input.text = "calories"
+                    category_input2.text = "happy"
                 on_release:
-                    app.get_data(username, category_input)
+                    app.get_calorie_weight(username, category_input, category_input2)
 
             Widget:
                 size_hint: None, None
@@ -143,10 +152,12 @@
                 text: 'Calorie/Weight'
                 font_size: 30
                 on_press:
-                    summary_display.text = "Calorie and Weight Corrolate!!!"
-                    category_input.text = "happy"
+                    username.text = app.get_user_name()
+                    summary_display.text = "Calorie and Weight Correlate!!!"
+                    category_input.text = "calories"
+                    category_input2.text = "weight"
                 on_release:
-                    app.get_data(username, category_input)
+                    app.get_calorie_weight(username, category_input, category_input2)
             Widget:
                 size_hint: None, None
                 height: 10
@@ -161,6 +172,8 @@
                 text: 'View Profile'
                 font_size: 30
                 on_press:
+                on_press:
+                    username.text = app.get_user_name()
                     app.root.current = "Display"
                     root.manager.transition.direction = "up"
             Widget:
