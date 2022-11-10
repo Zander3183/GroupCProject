@@ -67,7 +67,7 @@ class MainApp(App):
       
     #This sends data from python to mysql, so the summary graph can be created
     def get_data(self, username, category_input):
-        self.cursor.execute(f"SELECT {category_input.text} FROM {username.text} WHERE date > now() - INTERVAL 1 day")
+        self.cursor.execute(f"SELECT {category_input.text} FROM {username.text}")
         result = self.cursor.fetchall()
         self.database.commit()
         
@@ -83,10 +83,10 @@ class MainApp(App):
         self.graph(category_input, int1, int2, int3, int4, int5, int6, int7)
         
     def get_calorie_weight(self, username, category_input, category_input2):
-        self.cursor.execute(f"SELECT {category_input.text} FROM {username.text} WHERE date > now() - INTERVAL 1 day")
+        self.cursor.execute(f"SELECT {category_input.text} FROM {username.text}")
         result = self.cursor.fetchall()
         self.database.commit()
-        self.cursor.execute(f"SELECT {category_input2.text} FROM {username.text} WHERE date > now() - INTERVAL 1 day")
+        self.cursor.execute(f"SELECT {category_input2.text} FROM {username.text}")
         result1 = self.cursor.fetchall()
         self.database.commit()
         #These will be the datapoints to be plotted on the graph
@@ -119,7 +119,7 @@ class MainApp(App):
 
     #This sends data from python to mysql, for the calorie tracker
     def send_data_category_calorie(self, username, calorie): 
-        self.cursor.execute(f"INSERT INTO {username.text} VALUES( 0 , 0 , 0 , {calories.text} , CURRENT_TIMESTAMP)")
+        self.cursor.execute(f"INSERT INTO {username.text} VALUES( 0 , 0 , 0 , {calorie.text} , CURRENT_TIMESTAMP)")
         self.database.commit()
     
     #This sends data from python to mysql, for the happiness tracker
