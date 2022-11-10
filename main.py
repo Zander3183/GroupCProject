@@ -31,10 +31,11 @@ class MainApp(App):
 
     #The database is initialized
     username =''
-    database = mysql.connector.Connect(host="localhost", user="root", password="root", database="loginform")
+    database = mysql.connector.Connect(host="localhost", user="root", password="root")
     cursor = database.cursor()    
     #The database cursor is established, allowing for traversal of the database
     cursor.execute("""CREATE DATABASE IF NOT EXISTS loginform""")
+    cursor.execute("""USE loginform""")
     cursor.execute("""CREATE TABLE IF NOT EXISTS logindata(username VARCHAR(255), password_id VARCHAR(255), name_id VARCHAR(255), height_id INT, initial_weight_id INT, age_id INT, date DATE)""")
     cursor.execute("""CREATE TABLE IF NOT EXISTS global(username VARCHAR(255))""")
     
