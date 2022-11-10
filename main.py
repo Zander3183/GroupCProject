@@ -109,22 +109,22 @@ class MainApp(App):
         self.graph2(category_input, category_input2, int1, int2, int3, int4, int5, int6, int7, int11, int12, int13, int14, int15, int16, int17)
     #This sends data from python to mysql, for the weight tracker
     def send_data_category(self, username, weight): 
-        self.cursor.execute(f"update {username.text} set weight = '{weight.text}' where date < NOW() - interval 1 Hour")
+        self.cursor.execute(f"INSERT INTO {username.text} VALUES({weight.text} , 0 , 0 , 0 , CURRENT_TIMESTAMP)")
         self.database.commit()
 
     #This sends data from python to mysql, for the water intake tracker
     def send_data_category_water(self, username, water): 
-        self.cursor.execute(f"update {username.text} set water = '{water.text}' where date < NOW() - interval 1 Hour")
+        self.cursor.execute(f"INSERT INTO {username.text} VALUES( 0 , {water.text} , 0 , 0 , CURRENT_TIMESTAMP)")
         self.database.commit()
 
     #This sends data from python to mysql, for the calorie tracker
     def send_data_category_calorie(self, username, calorie): 
-        self.cursor.execute(f"update {username.text} set calories = '{calorie.text}' where date < NOW() - interval 1 Hour")
+        self.cursor.execute(f"INSERT INTO {username.text} VALUES( 0 , 0 , 0 , {calories.text} , CURRENT_TIMESTAMP)")
         self.database.commit()
     
     #This sends data from python to mysql, for the happiness tracker
     def send_data_category_happy(self, username, happy, info): 
-        self.cursor.execute(f"update {username.text} set happy = '{happy.text}' where date < NOW() - interval 1 Hour")
+        self.cursor.execute(f"INSERT INTO {username.text} VALUES( 0 , 0 , {happy.text} , 0 , CURRENT_TIMESTAMP)")
         self.database.commit()
 
 
