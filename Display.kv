@@ -11,7 +11,7 @@
             color: 1,50,0,1
         Label:
             id: infos
-            text: "Blank Info"
+            text: "Click Button To View Initial Profile!!"
             markup: True
             size_hint_y: None
             height: 20
@@ -20,19 +20,24 @@
             text: "Display Profile"
             font_size: 30
             on_press:
-                username1.text = app.get_user_name()
+                name_label.text = app.get_user_name2()
+                height_label.text = app.get_user_name3()
+                initial_weight_label.text = app.get_user_name4()
+                age_label.text = app.get_user_name5()
+
+
         GridLayout:
             cols: 2
             spacing: '10dp'
             # This creates a textbox that asks for the username
             Label:
                 id: username1
-                text: "User Name"
+                text: "User Name / Weight"
                 font_size: 30
             # This creates a textbox that asks for the password
             Label:
                 id: password_label
-                text: "Label"
+                text: "Height / Age"
                 font_size: 30
             #This creats a textbox that asks for the name
             Label:

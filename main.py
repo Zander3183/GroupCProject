@@ -64,6 +64,49 @@ class MainApp(App):
             word = record[0]
         return word
 
+    def get_user_name2(self):
+        sql_query = f"SELECT * FROM logindata"
+        self.cursor.execute(sql_query)
+        records = self.cursor.fetchall()
+        self.database.commit()
+        word = ''
+        for record in records:
+            word = record[2]
+            word = str(word)
+        return word
+    
+    def get_user_name3(self):
+        sql_query = f"SELECT * FROM logindata"
+        self.cursor.execute(sql_query)
+        records = self.cursor.fetchall()
+        self.database.commit()
+        word = ''
+        for record in records:
+            word = record[3]
+            word = str(word)
+        return word
+
+    def get_user_name4(self):
+        sql_query = f"SELECT * FROM logindata"
+        self.cursor.execute(sql_query)
+        records = self.cursor.fetchall()
+        self.database.commit()
+        word = ''
+        for record in records:
+            word = record[4]
+            word = str(word)
+        return word
+
+    def get_user_name5(self):
+        sql_query = f"SELECT * FROM logindata"
+        self.cursor.execute(sql_query)
+        records = self.cursor.fetchall()
+        self.database.commit()
+        word = ''
+        for record in records:
+            word = record[5]
+            word = str(word)
+        return word
       
     #This sends data from python to mysql, so the summary graph can be created
     def get_data(self, username, category_input):
