@@ -47,7 +47,10 @@ class MainApp(App):
     def username_global(self, username):
         self.cursor.execute(f"DELETE FROM global")
         self.cursor.execute(f"insert into global values('{username.text}')")
-        self.cursor.execute(f"insert into {username.text} set date = NOW()")
+        try:
+            self.cursor.execute(f"insert into {username.text} set date = NOW()")
+        except:
+            print("Bad Login Attempt")
         self.database.commit()
     
     def get_user_name(self):
@@ -205,13 +208,13 @@ class MainApp(App):
                     password_queue.append(x)
         except:
             print('error occured')
-
         if username.text == "" and password_id.text == "":
             info.text = 'Login'
             print('no data!!!')
         elif (username.text and password_id.text) in password_queue:
             info.text = 'Dashboard'
             print('yes!!!')
+
         else:
             info.text = 'Login'        
         
